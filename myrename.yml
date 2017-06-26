@@ -1,0 +1,30 @@
+---
+- hosts: rhv.lab.local
+  remote_user: root
+  gather_facts: False
+  tasks:
+
+  # - name: debug
+  #   debug:
+  #     msg: "{{ item.name }} | {{ item.newname }}"
+  #   with_items:
+  #   - { 'name': "noexiste", 'newname': "noexistenew" }
+  #   - { 'name': "noexiste", 'newname': "noexistenew" }
+  #   - { 'name': "maxisat", 'newname': "HostedEngine" }
+  #   - { 'name': "maxisat", 'newname': "maxisat" }
+  #   - { 'name': "maxisat", 'newname': "minisat" }
+  #   - { 'name': "maxisat", 'newname': "maxisat" }
+
+  - name: rename VM
+    ovirt_vm_rename:
+      url: https://127.0.0.1/ovirt-engine/api
+      user: admin@internal
+      password: redhat
+      name: "{{ item.name }}"
+      newname: "{{ item.newname }}"
+    with_items:
+    - { 'name': "doesnotexist", 'newname': "doesnotexistnew" }
+    - { 'name': "maxisat", 'newname': "HostedEngine" }
+    - { 'name': "maxisat", 'newname': "maxisat" }
+    - { 'name': "maxisat", 'newname': "minisat" }
+    - { 'name': "minisat", 'newname': "maxisat" }

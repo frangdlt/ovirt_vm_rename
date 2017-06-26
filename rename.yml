@@ -1,0 +1,21 @@
+---
+- name: rename VM
+  hosts: localhost
+  remote_user: root
+  gather_facts: false
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+
+  - name: rename VMs
+    ovirt_vm_rename:
+     url: https://127.0.0.1/ovirt-engine/api
+     user: admin@internal
+     password: unix1234
+     name: "{{ item.name }}"
+     newname: "{{ item.newname }}"
+    with_items:
+     - { name: "vm1", newname: "vm1new" }
+     - { name: "vm2", newname: "vm2new" }
+     - { name: "vm3", newname: "vm3new" }
