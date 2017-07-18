@@ -6,6 +6,8 @@ Simple ovirt_vm_rename module that allows renaming an existing VM.
 
 ovirt-engine-sdk-python needs to exist on the target node so that would typically be your engine host
 
+Note that the VM needs to be **powered off** for this to be effective. If the VM is powered on, this change will only be after a full power off/on.
+
 
 ## BASIC TESTING
 
